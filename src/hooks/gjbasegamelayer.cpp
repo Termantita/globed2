@@ -1,5 +1,7 @@
 #include "gjbasegamelayer.hpp"
 
+#include "data/types/game.hpp"
+#include "data/types/gd.hpp"
 #include "play_layer.hpp"
 #include "level_editor_layer.hpp"
 #include "game_manager.hpp"
@@ -614,7 +616,7 @@ void GlobedGJBGL::selUpdate(float timescaledDt) {
 
     if (auto pl = PlayLayer::get()) {
         if (self->m_fields->progressBarWrapper->getParent() != nullptr) {
-            self->m_fields->selfProgressIcon->updatePosition(pl->getCurrentPercent() / 100.f);
+            self->m_fields->selfProgressIcon->updatePosition(pl->getCurrentPercent() / 100.f, this->get()->m_isPracticeMode);
         } else if (pl->m_progressBar) {
             // for some reason, the progressbar is sometimes initialized later than PlayLayer::init
             // it always should exist, even in levels with no actual progress bar (i.e. platformer levels)
@@ -1214,7 +1216,7 @@ class $modify(TwoPModePlayerObject, PlayerObject) {
             //     this->m_isHidden = true;
             // }
 
-            this->m_unk65c = false;
+            this->m_playEffects = false;
             if (this->m_regularTrail) this->m_regularTrail->setVisible(false);
             if (this->m_waveTrail) this->m_waveTrail->setVisible(false);
             if (this->m_ghostTrail) this->m_ghostTrail->setVisible(false);
