@@ -54,6 +54,7 @@ public:
 
 protected:
     unsigned int defaultTicks = 0;
+    bool wasPracticing = false;
     float lastPercentage = 0.f;
     bool isForciblyHidden = false;
     bool isEditorBuilding = false;
