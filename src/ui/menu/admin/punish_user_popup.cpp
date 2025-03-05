@@ -458,7 +458,7 @@ void AdminPunishUserPopup::submit() {
         UserPunishment punishment = {
             0, accountId, (isBan) ? PunishmentType::Ban : PunishmentType::Mute,
             reason, expiresAt, 
-        }
+        };
         pkt = AdminPunishUserPacket::create(accountId, isBan, reason, expiresAt);
     } else {
         // edit the punishment otherwise
